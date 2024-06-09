@@ -142,7 +142,7 @@ def beauty_excel(context: AssetExecutionContext, process_bigc_data: pd.DataFrame
         ws.column_dimensions[column].width = adjusted_width
 
     # filename with date and time
-    today = pd.Timestamp.now().strftime("%Y%m%d_%H-%M-%S")
+    today = pd.Timestamp.now().strftime("%Y%m%d")
     filename = f"product_bigc_{today}.xlsx"
     wb.save("./data/" + filename)
 
@@ -200,7 +200,8 @@ defs = Definitions(
         ScheduleDefinition(
             name="bigc_schedule",
             job_name="process_bigc_data_and_upload",
-            cron_schedule="* * * * *",
+            cron_schedule="0 0 * * *",
+            execution_timezone="Asia/Bangkok",
         )
     ],
 )
